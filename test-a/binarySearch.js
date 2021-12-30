@@ -2,12 +2,12 @@
 const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 let count = 0
 
-const binarySearch = (array, item) => {
+const binarSearch = (array, item) => {
   let start = 0
   let end = array.length
   let middle
   let found = true
-  let position = "Not found..."
+  let position = "not found"
 
   while (found && start <= end) {
     count++
@@ -24,8 +24,8 @@ const binarySearch = (array, item) => {
       start = middle + 1
     }
   }
+
   return position
 }
-
-console.log("index", binarySearch(array, 4))
+console.log("index", binarSearch(array, 12))
 console.log("count", count)
