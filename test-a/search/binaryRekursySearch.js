@@ -5,18 +5,9 @@ let count = 0
 const binaryRekursySearch = (array, item, start, end) => {
   count++
   let middle = Math.floor((start + end) / 2)
-
-  if (item > array.length) {
-    return "not found"
-  }
-  if (item === array[middle]) {
-    return middle
-  }
-  if (item < array[middle]) {
-    return binaryRekursySearch(array, item, 0, middle - 1)
-  } else {
-    return binaryRekursySearch(array, item, middle + 1, end)
-  }
+  if (item === array[middle]) return middle
+  if (item < array[middle]) return binarSearch(array, item, start, middle - 1)
+  else return binarSearch(array, item, middle + 1, end)
 }
 
 console.log("index", binaryRekursySearch(array, 10, 0, array.length))

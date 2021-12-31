@@ -18,7 +18,6 @@ const selectionSort = array => {
       if (array[j] < array[indexMin]) {
         indexMin = j
       }
-
       count++
     }
     let tmp = array[i]

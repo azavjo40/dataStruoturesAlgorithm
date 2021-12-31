@@ -3,9 +3,8 @@ const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 let count = 0
 
 const linearSearchFilter = (array, found) => {
-  return array.filter(item => item === found)[0]
+  return array.filter(item => item === found)
 }
-
 console.log("index", linearSearchFilter(array, 15))
 
 ////////////////////////////////////////////////////

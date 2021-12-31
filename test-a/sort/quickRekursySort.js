@@ -10,7 +10,7 @@ const array = [
 ]
 let count = 0
 
-const quickSort = array => {
+const quickRekursySort = array => {
   count++
   if (1 >= array.length) {
     return array
@@ -29,8 +29,8 @@ const quickSort = array => {
       greater.push(array[i])
     }
   }
-  return [...quickSort(less), pivot, ...quickSort(greater)]
+  return [...quickRekursySort(less), pivot, ...quickRekursySort(greater)]
 }
 
-console.log(quickSort(array))
+console.log(quickRekursySort(array))
 console.log(count)
