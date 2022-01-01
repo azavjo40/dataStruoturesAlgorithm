@@ -24,7 +24,7 @@ const findeNodeLowerstCosts = (costs, processed) => {
 }
 
 //////////////////////////////////////////////////////////////////
-const shorPath = (graph, start, end) => {
+const shorGraphsearch = (graph, start, end) => {
   const costs = {}
   const processed = []
   let neighbars = {}
@@ -53,4 +53,4 @@ const shorPath = (graph, start, end) => {
   return costs
 }
 
-console.log(shorPath(graph, "a", "b"))
+console.log(shorGraphsearch(graph, "a", "b"))
