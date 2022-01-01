@@ -1,10 +1,29 @@
-const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+const array = [
+  0, 3, 2, 0, 3, 2, 5, 6, 8, 1, 9, 4, 2, 1, 5, 6, 8, 0, 3, 2, 5, 6, 8, 1, 9, 4,
+  2, 1, 1, 9, 4, 2, 1, 0, 3, 2, 0, 3, 2, 5, 6, 8, 1, 9, 4, 2, 1, 5, 6, 8, 0, 3,
+  2, 5, 6, 8, 1, 9, 4, 2, 1, 1, 9, 4, 2, 1, 0, 3, 2, 0, 3, 2, 5, 6, 8, 1, 9, 4,
+  2, 1, 5, 6, 8, 0, 3, 2, 5, 6, 8, 1, 9, 4, 2, 1, 1, 9, 4, 2, 1, 0, 3, 2, 0, 3,
+  2, 5, 6, 8, 1, 9, 4, 2, 1, 5, 6, 8, 0, 3, 2, 5, 6, 8, 1, 9, 4, 2, 1, 1, 9, 4,
+  2, 1, 0, 3, 2, 0, 3, 2, 5, 6, 8, 1, 9, 4, 2, 1, 5, 6, 8, 0, 3, 2, 5, 6, 8, 1,
+  9, 4, 2, 1, 1, 9, 4, 2, 1,
+]
 let count = 0
 
-const foo = n => {
+const quickRekursySort = array => {
+  const len = array.length
   count++
-  if (n === 1 || n === 2) return n
-  return foo(n - 1) + foo(n - 2)
+  if (len <= 1) return array
+  let pivotIndex = Math.floor(len / 2)
+  let pivot = array[pivotIndex]
+  let less = []
+  let greater = []
+
+  for (let i = 0; i < len; i++) {
+    if (i === pivotIndex) continue
+    if (array[i] < pivot) less.push(array[i])
+    else greater.push(array[i])
+  }
+  return [...quickRekursySort(less), pivot, ...quickRekursySort(greater)]
 }
-console.log("index", foo(8))
+console.log("index", quickRekursySort(array))
 console.log("count", count)

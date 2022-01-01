@@ -1,4 +1,4 @@
-///////////////////////////////////////////////
+//////////////////////////////////////////////
 const array = [
   0, 3, 2, 0, 3, 2, 5, 6, 8, 1, 9, 4, 2, 1, 5, 6, 8, 0, 3, 2, 5, 6, 8, 1, 9, 4,
   2, 1, 1, 9, 4, 2, 1, 0, 3, 2, 0, 3, 2, 5, 6, 8, 1, 9, 4, 2, 1, 5, 6, 8, 0, 3,
@@ -10,19 +10,22 @@ const array = [
 ]
 let count = 0
 
-const bubbleSort = array => {
-  for (var i = 0; i < array.length; i++) {
-    for (var j = 0; j < array.length - i - 1; j++) {
-      if (array[j] > array[j + 1]) {
-        var temp = array[j]
-        array[j] = array[j + 1]
-        array[j + 1] = temp
-      }
-      count++
-    }
+const quickRekursySort = array => {
+  const len = array.length
+  count++
+  if (len <= 1) return array
+  let pivotIndex = Math.floor(len / 2)
+  let pivot = array[pivotIndex]
+  let less = []
+  let greater = []
+
+  for (let i = 0; i < len; i++) {
+    if (i === pivotIndex) continue
+    if (array[i] < pivot) less.push(array[i])
+    else greater.push(array[i])
   }
-  return array
+  return [...quickRekursySort(less), pivot, ...quickRekursySort(greater)]
 }
 
-console.log(bubbleSort(array))
+console.log(quickRekursySort(array))
 console.log(count)
