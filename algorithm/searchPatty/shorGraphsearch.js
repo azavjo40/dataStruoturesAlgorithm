@@ -9,7 +9,30 @@ const graph = {
   g: {},
 }
 
-///////////////////////////////////////////////////////////
+const shorGraphsearch = (graph, start, end) => {
+  const costs = {}
+  const processed = []
+  let neighbars = {}
+  Object.keys(graph).forEach(node => {
+    if (node !== start) {
+      costs[node] = graph[start][node] || 100000000
+    }
+  })
+
+  let node = findeNodeLowerstCosts(costs, processed)
+  while (node) {
+    const cost = costs[node]
+    neighbars = graph[node]
+    Object.keys(neighbars).forEach(neighbor => {
+      let newCost = cost + neighbars[neighbor]
+      if (newCost < costs[neighbor]) costs[neighbor] = newCost
+    })
+    processed.push(node)
+    node = findeNodeLowerstCosts(costs, processed)
+  }
+  return costs
+}
+
 const findeNodeLowerstCosts = (costs, processed) => {
   let lowestCost = 100000000
   let lowestNode
@@ -21,36 +44,6 @@ const findeNodeLowerstCosts = (costs, processed) => {
     }
   })
   return lowestNode
-}
-
-//////////////////////////////////////////////////////////////////
-const shorGraphsearch = (graph, start, end) => {
-  const costs = {}
-  const processed = []
-  let neighbars = {}
-  Object.keys(graph).forEach(node => {
-    if (node !== start) {
-      let value = graph[start][node]
-      costs[node] = value || 100000000
-    }
-  })
-
-  let node = findeNodeLowerstCosts(costs, processed)
-
-  while (node) {
-    const cost = costs[node]
-    neighbars = graph[node]
-    Object.keys(neighbars).forEach(neighbor => {
-      let newCost = cost + neighbars[neighbor]
-      if (newCost < costs[neighbor]) {
-        costs[neighbor] = newCost
-      }
-    })
-    processed.push(node)
-
-    node = findeNodeLowerstCosts(costs, processed)
-  }
-  return costs
 }
 
 console.log(shorGraphsearch(graph, "a", "b"))

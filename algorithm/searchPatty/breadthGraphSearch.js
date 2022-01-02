@@ -16,7 +16,6 @@ const breadthGraphSearch = (graph, start, end) => {
     count++
     const currrent = queue.shift()
     if (!graph[currrent]) graph[currrent] = []
-    console.log(graph[currrent])
     if (graph[currrent].includes(end)) return true
     else queue = [...queue, ...graph[currrent]]
   }
