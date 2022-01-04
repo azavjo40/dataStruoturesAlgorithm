@@ -7,6 +7,81 @@ class Node {
 
 class LinkedList {
   constructor() {
+    this.root = null
+  }
+
+  append(data) {
+    let node = new Node(data)
+    if (!this.root) this.root = node
+    else {
+      let current = this.root
+      while (current.next) {
+        current = current.next
+      }
+      current.next = node
+    }
+  }
+
+  prepend(data) {
+    const node = new Node(data, this.root)
+    this.root = node
+  }
+
+  find(data) {
+    if (!this.root) return "not found"
+    let current = this.root
+    while (current) {
+      if (current.data === data) return current
+      current = current.next
+    }
+    return "not found"
+  }
+
+  removeAfter(data) {
+    let current = this.root
+    while (current.next) {
+      if (current.data === data) {
+        current.next = current.next.next
+        return current
+      } else current = current.next
+    }
+  }
+
+  insertAfter(after, data) {
+    let current = this.root
+    if (!current) return "not found"
+    while (current.next) {
+      if (current.data === after) {
+        current.next = new Node(data, current.next.next)
+        return
+      } else current = current.next
+    }
+  }
+}
+
+const list = new LinkedList()
+
+list.append(5)
+list.append(4)
+list.append(3)
+list.append(2)
+list.append(1)
+list.prepend(6)
+list.insertAfter(2, 0)
+list.removeAfter(4)
+console.log(list.find(0))
+console.log(list)
+
+//////////////////////////////////////////////////////////////// 2
+class Node {
+  constructor(data, next = null) {
+    this.data = data
+    this.next = next
+  }
+}
+
+class LinkedList {
+  constructor() {
     this.head = null
     this.tail = null
   }
@@ -79,56 +154,3 @@ list.insertAfter("is", "Adam")
 console.log(list.toArray())
 console.log(list.find("name"))
 console.log(JSON.stringify(list))
-
-class LinkedList {
-  constructor() {
-    this.size = 0
-    this.root = null
-  }
-
-  add(value) {
-    if (this.size == 0) {
-      this.root = new Node(value)
-    } else {
-      let node = this.root
-      while (node.next) {
-        node = node.next
-      }
-      node.next = new Node(value)
-    }
-    this.size += 1
-  }
-
-  getSize() {
-    return this.size
-  }
-
-  print() {
-    let result = []
-    let node = this.root
-    while (node) {
-      result.push(node.value)
-      node = node.next
-    }
-    console.log(result)
-  }
-
-  getAll() {
-    return this.root
-  }
-}
-
-class Node {
-  constructor(value) {
-    this.value = value
-    this.next = null
-  }
-}
-const list = new LinkedList()
-
-list.add(8)
-list.add(5)
-list.add(1)
-console.log(list.getSize())
-list.print()
-console.log(list.getAll())
