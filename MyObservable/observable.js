@@ -1,8 +1,6 @@
 class Observable {
   constructor(subscriptionFun) {
     this.subscriptionFun = subscriptionFun
-    this.nextData = []
-    this.errorData = []
   }
   subscribe(next, error, complete) {
     try {
